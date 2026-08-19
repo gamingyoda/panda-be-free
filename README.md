@@ -5,7 +5,7 @@
 <h1 align="center">PandaBeFree</h1>
 
 <p align="center">
-  A free, open-source 3D printer dashboard for iOS.<br>
+  A free, open-source 3D printer dashboard for iPhone and Apple Watch.<br>
   Connects directly to your Bambu Lab printer via MQTT on your local network — no cloud, no server, no subscription.
 </p>
 
@@ -51,6 +51,7 @@
 - **Camera Streaming** — live camera feed with fullscreen and zoom support
 - **AMS Monitoring** — filament status, colors, material types, and drying control
 - **Printer Controls** — pause, resume, stop, speed profiles, light toggle, temperature adjustment, fan control, and airduct mode
+- **Apple Watch Companion** — view print progress, ETA, layers, and temperatures, then pause, resume, stop, or refresh from your wrist
 - **Home Screen Widgets** — camera snapshot, print progress, and AMS status at a glance
 - **Fully Local** — your data never leaves your network
 - **Live Activity** — print progress on your Lock Screen and Dynamic Island with an auto-filling progress bar, countdown timer, and estimated finish time
@@ -60,6 +61,7 @@
 ## Requirements
 
 - **iPhone** with iOS 18+
+- **Apple Watch** with watchOS 11+ for the optional companion app
 - **Bambu Lab printer** on the same local network
 
 ---
@@ -126,9 +128,11 @@ PandaBeFree is a lot of fun, but also a lot of work. If you enjoy using it, plea
    ```
    Edit `LocalSigning.xcconfig` with your values. This file is gitignored.
 
-4. Build and run on your iPhone.
+4. Build and run the `PandaBeFree` scheme on your iPhone.
 
 5. Follow the in-app onboarding to enter your printer's IP address and access code (found on the printer's touchscreen under Network settings).
+
+6. To use the companion app, select the `PandaBeFreeWatch` scheme and run it on an Apple Watch paired with that iPhone. Printer setup and LAN access remain on the iPhone; the watch receives status and sends commands through the companion app.
 
 ---
 

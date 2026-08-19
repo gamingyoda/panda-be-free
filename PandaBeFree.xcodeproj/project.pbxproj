@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		10A078915EE784E309E4ECE5 /* PandaBeFreeWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D86EEAC462745475D75FEC42 /* PandaBeFreeWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AA100001AA100001AA100001 /* PandaBeFreeWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = AA100004AA100004AA100004 /* PandaBeFreeWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CC50015001500150015001AA /* PandaModels in Frameworks */ = {isa = PBXBuildFile; productRef = CC60016001600160016001AA /* PandaModels */; };
 		CC50025002500250025002AA /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = CC60026002600260026002AA /* Networking */; };
 		CC50035003500350035003AA /* PandaUI in Frameworks */ = {isa = PBXBuildFile; productRef = CC60036003600360036003AA /* PandaUI */; };
@@ -26,6 +27,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		AA100002AA100002AA100002 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 89883CB3A77EDF3D2C1BB66A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA100008AA100008AA100008;
+			remoteInfo = PandaBeFreeWatch;
+		};
 		A607B8DEABD93767D8004B1D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 89883CB3A77EDF3D2C1BB66A /* Project object */;
@@ -43,6 +51,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		AA100003AA100003AA100003 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				AA100001AA100001AA100001 /* PandaBeFreeWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8B97E6F6E21357353A695675 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -58,6 +77,7 @@
 
 /* Begin PBXFileReference section */
 		1C09D3078BC671FDCDBF3F3E /* PandaBeFree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PandaBeFree.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA100004AA100004AA100004 /* PandaBeFreeWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PandaBeFreeWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D86EEAC462745475D75FEC42 /* PandaBeFreeWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PandaBeFreeWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD0020002000200020002000 /* PandaBeFreeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PandaBeFreeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -73,6 +93,8 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		AA100005AA100005AA100005 /* PandaBeFreeWatch */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = PandaBeFreeWatch; sourceTree = "<group>"; };
+		AA100006AA100006AA100006 /* PandaWatchShared */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = PandaWatchShared; sourceTree = "<group>"; };
 		F8861C4E2F61B11600E5CB64 /* PandaBeFree */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (F8861C632F61B11600E5CB64 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = PandaBeFree; sourceTree = "<group>"; };
 		F8861C772F61B11A00E5CB64 /* PandaBeFreeWidgets */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = PandaBeFreeWidgets; sourceTree = "<group>"; };
 		F8861C852F61B11D00E5CB64 /* PandaBeFreeTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = PandaBeFreeTests; sourceTree = "<group>"; };
@@ -82,6 +104,13 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		AA100007AA100007AA100007 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A0EFCD2F5148058D780A6CAD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -127,6 +156,8 @@
 				F8861C8E2F61B16C00E5CB64 /* Configuration */,
 				F8861C882F61B14500E5CB64 /* Modules */,
 				F8861C4E2F61B11600E5CB64 /* PandaBeFree */,
+				AA100005AA100005AA100005 /* PandaBeFreeWatch */,
+				AA100006AA100006AA100006 /* PandaWatchShared */,
 				F8861C772F61B11A00E5CB64 /* PandaBeFreeWidgets */,
 				F8861C852F61B11D00E5CB64 /* PandaBeFreeTests */,
 				F8861C912F61B19700E5CB64 /* Resources */,
@@ -138,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				1C09D3078BC671FDCDBF3F3E /* PandaBeFree.app */,
+				AA100004AA100004AA100004 /* PandaBeFreeWatch.app */,
 				D86EEAC462745475D75FEC42 /* PandaBeFreeWidgets.appex */,
 				DD0020002000200020002000 /* PandaBeFreeTests.xctest */,
 			);
@@ -147,6 +179,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		AA100008AA100008AA100008 /* PandaBeFreeWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA10000EAA10000EAA10000E /* Build configuration list for PBXNativeTarget "PandaBeFreeWatch" */;
+			buildPhases = (
+				AA10000AAA10000AAA10000A /* Sources */,
+				AA100007AA100007AA100007 /* Frameworks */,
+				AA100009AA100009AA100009 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				AA100005AA100005AA100005 /* PandaBeFreeWatch */,
+				AA100006AA100006AA100006 /* PandaWatchShared */,
+			);
+			name = PandaBeFreeWatch;
+			packageProductDependencies = (
+			);
+			productName = PandaBeFreeWatch;
+			productReference = AA100004AA100004AA100004 /* PandaBeFreeWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
 		67A507F25268BF5A58657171 /* PandaBeFreeWidgets */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 471E8347629D4E0CA1BF532F /* Build configuration list for PBXNativeTarget "PandaBeFreeWidgets" */;
@@ -180,14 +235,17 @@
 				973C49A5DB45A231E9C317EF /* Resources */,
 				A0EFCD2F5148058D780A6CAD /* Frameworks */,
 				8B97E6F6E21357353A695675 /* Embed Foundation Extensions */,
+				AA100003AA100003AA100003 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				C405D1712A7E4B42E1FB0DCA /* PBXTargetDependency */,
+				AA10000BAA10000BAA10000B /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				F8861C4E2F61B11600E5CB64 /* PandaBeFree */,
+				AA100006AA100006AA100006 /* PandaWatchShared */,
 				F8861C912F61B19700E5CB64 /* Resources */,
 			);
 			name = PandaBeFree;
@@ -238,6 +296,11 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					AA100008AA100008AA100008 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
 			};
 			buildConfigurationList = 19F51EE8AB0D3C1E1BD800CD /* Build configuration list for PBXProject "PandaBeFree" */;
 			compatibilityVersion = "Xcode 14.0";
@@ -257,6 +320,7 @@
 			projectRoot = "";
 			targets = (
 				880AA1AAF12ED3660BD0F1EC /* PandaBeFree */,
+				AA100008AA100008AA100008 /* PandaBeFreeWatch */,
 				67A507F25268BF5A58657171 /* PandaBeFreeWidgets */,
 				CC0010001000100010001000 /* PandaBeFreeTests */,
 			);
@@ -264,6 +328,13 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		AA100009AA100009AA100009 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		973C49A5DB45A231E9C317EF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -274,6 +345,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		AA10000AAA10000AAA10000A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1718088A2CB141E63D0E4C2A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -298,6 +376,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		AA10000BAA10000BAA10000B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA100008AA100008AA100008 /* PandaBeFreeWatch */;
+			targetProxy = AA100002AA100002AA100002 /* PBXContainerItemProxy */;
+		};
 		C405D1712A7E4B42E1FB0DCA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 67A507F25268BF5A58657171 /* PandaBeFreeWidgets */;
@@ -311,6 +394,62 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		AA10000CAA10000CAA10000C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = F8861C8E2F61B16C00E5CB64 /* Configuration */;
+			baseConfigurationReferenceRelativePath = Base.xcconfig;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 7;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = PandaBeFree;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "$(APP_BUNDLE_ID)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID).watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Debug;
+		};
+		AA10000DAA10000DAA10000D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = F8861C8E2F61B16C00E5CB64 /* Configuration */;
+			baseConfigurationReferenceRelativePath = Base.xcconfig;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 7;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = PandaBeFree;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "$(APP_BUNDLE_ID)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_ID).watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchos watchsimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Release;
+		};
 		0F9EFD4B6D38ED5F612B2AE0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -577,6 +716,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		AA10000EAA10000EAA10000E /* Build configuration list for PBXNativeTarget "PandaBeFreeWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA10000CAA10000CAA10000C /* Debug */,
+				AA10000DAA10000DAA10000D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		06E0806B025D4C9209BCE708 /* Build configuration list for PBXNativeTarget "PandaBeFree" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
