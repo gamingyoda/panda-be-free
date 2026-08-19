@@ -415,11 +415,11 @@ final class DashboardViewModel {
     // MARK: - Apple Watch
 
     private func makeWatchSnapshot() -> WatchPrinterSnapshot {
-        if hasReceivedInitialData {
+        if isConnected, hasReceivedInitialData {
             return makeWatchSnapshot(
                 contentState: printerState.contentState,
                 lastUpdated: printerState.lastUpdated,
-                isConnected: isConnected
+                isConnected: true
             )
         }
 
@@ -427,6 +427,14 @@ final class DashboardViewModel {
             return makeWatchSnapshot(
                 contentState: cached.contentState,
                 lastUpdated: cached.lastUpdated,
+                isConnected: false
+            )
+        }
+
+        if hasReceivedInitialData {
+            return makeWatchSnapshot(
+                contentState: printerState.contentState,
+                lastUpdated: printerState.lastUpdated,
                 isConnected: false
             )
         }
