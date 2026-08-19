@@ -123,6 +123,20 @@ final class DashboardViewModel {
         self.mqttService = mqttService
         self.notificationScheduler = notificationScheduler
         self.liveActivityManager = liveActivityManager
+
+        WatchSessionManager.shared.configure(
+            stateProvider: { [weak self] in
+                guard let self else { return .empty }
+                return await self.makeWatchSnapshot()
+            },
+            commandHandler: { [weak self] command in
+                guard let self else {
+                    return .failed("iPhone app is not ready")
+                }
+                return await self.handleWatchCommand(command)
+            }
+        )
+        WatchSessionManager.shared.activate()
     }
 
     deinit {
@@ -254,6 +268,8 @@ final class DashboardViewModel {
                         await lam.endIfNeeded(contentState: cs)
                     }
                 }
+
+                WatchSessionManager.shared.publish(self.makeWatchSnapshot())
             }
         }
 
@@ -272,6 +288,7 @@ final class DashboardViewModel {
                 case .connecting:
                     break
                 }
+                WatchSessionManager.shared.publish(self.makeWatchSnapshot())
             }
         }
     }
@@ -309,6 +326,7 @@ final class DashboardViewModel {
         lastScheduledPrintMinutes = nil
         lastScheduledDryingMinutes = [:]
         lastScheduledStatus = nil
+        WatchSessionManager.shared.publish(makeWatchSnapshot())
     }
 
     /// Disconnect and clear all saved configuration, returning to onboarding.
@@ -318,6 +336,7 @@ final class DashboardViewModel {
         SharedSettings.printerAccessCode = ""
         SharedSettings.printerSerial = ""
         SharedSettings.printerModel = nil
+        WatchSessionManager.shared.publish(makeWatchSnapshot())
     }
 
     func disconnectCamera() {
@@ -391,6 +410,112 @@ final class DashboardViewModel {
     func stopPrint() {
         appLog(.info, category: logCategory, "Command: stop")
         mqttService.sendCommand(.stop)
+    }
+
+    // MARK: - Apple Watch
+
+    private func makeWatchSnapshot() -> WatchPrinterSnapshot {
+        if hasReceivedInitialData {
+            return makeWatchSnapshot(
+                contentState: printerState.contentState,
+                lastUpdated: printerState.lastUpdated,
+                isConnected: isConnected
+            )
+        }
+
+        if let cached = SharedSettings.cachedPrinterState {
+            return makeWatchSnapshot(
+                contentState: cached.contentState,
+                lastUpdated: cached.lastUpdated,
+                isConnected: false
+            )
+        }
+
+        return WatchPrinterSnapshot(
+            isConfigured: SharedSettings.hasConfiguration,
+            isConnected: false,
+            printerName: SharedSettings.printerModel?.displayName ?? "3D Printer",
+            status: .idle,
+            progress: 0,
+            remainingMinutes: 0,
+            jobName: "",
+            layerNum: 0,
+            totalLayers: 0
+        )
+    }
+
+    private func makeWatchSnapshot(
+        contentState: PrinterAttributes.ContentState,
+        lastUpdated: Date?,
+        isConnected: Bool
+    ) -> WatchPrinterSnapshot {
+        WatchPrinterSnapshot(
+            isConfigured: SharedSettings.hasConfiguration,
+            isConnected: isConnected,
+            printerName: SharedSettings.printerModel?.displayName ?? "3D Printer",
+            status: WatchPrinterStatus(rawValue: contentState.status.rawValue) ?? .idle,
+            progress: contentState.progress,
+            remainingMinutes: contentState.remainingMinutes,
+            jobName: contentState.jobName,
+            layerNum: contentState.layerNum,
+            totalLayers: contentState.totalLayers,
+            nozzleTemp: contentState.nozzleTemp,
+            nozzleTargetTemp: contentState.nozzleTargetTemp,
+            bedTemp: contentState.bedTemp,
+            bedTargetTemp: contentState.bedTargetTemp,
+            chamberTemp: contentState.chamberTemp,
+            lastUpdated: lastUpdated
+        )
+    }
+
+    private func handleWatchCommand(_ command: WatchPrinterCommand) async -> WatchCommandResult {
+        guard SharedSettings.hasConfiguration else {
+            return .failed("Configure the printer on iPhone first")
+        }
+
+        if command == .refresh {
+            if isConnected {
+                WatchSessionManager.shared.publish(makeWatchSnapshot())
+                return .succeeded("Printer state updated")
+            }
+
+            do {
+                let snapshot = try await WidgetMQTTService.fetchSnapshot(
+                    ip: SharedSettings.printerIP,
+                    accessCode: SharedSettings.printerAccessCode,
+                    serial: SharedSettings.printerSerial
+                )
+                SharedSettings.cachedPrinterState = snapshot
+                WatchSessionManager.shared.publish(makeWatchSnapshot())
+                return .succeeded("Printer state updated")
+            } catch {
+                return .failed(error.localizedDescription)
+            }
+        }
+
+        let printerCommand: PrinterCommand = switch command {
+        case .pause: .pause
+        case .resume: .resume
+        case .stop: .stop
+        case .refresh: preconditionFailure("Refresh handled above")
+        }
+
+        if isConnected {
+            mqttService.sendCommand(printerCommand)
+            return .succeeded("Command sent")
+        }
+
+        do {
+            try await WidgetMQTTService.sendCommand(
+                printerCommand,
+                ip: SharedSettings.printerIP,
+                accessCode: SharedSettings.printerAccessCode,
+                serial: SharedSettings.printerSerial
+            )
+            return .succeeded("Command sent")
+        } catch {
+            return .failed(error.localizedDescription)
+        }
     }
 
     func setSpeed(_ level: PrinterCommand.SpeedLevel) {
